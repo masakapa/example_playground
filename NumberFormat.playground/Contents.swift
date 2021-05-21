@@ -4,7 +4,7 @@ import UIKit
 // MARK: - 数字处理
 
 //原始数字（需要先转成NSNumber类型）
-let number = NSNumber(value: 1234.5678)
+let number = NSNumber(value: 1234.5078)
 
 // numberStyle 格式化
 
@@ -69,16 +69,18 @@ numberFormatter.formatWidth = 10 //补齐10位
 numberFormatter.paddingCharacter = "0" //不足位数用0补
 numberFormatter.paddingPosition = .beforePrefix  //补在前面
 /// 最大整小位数、最小小数位数
-numberFormatter.maximumFractionDigits = 2 //设置小数点后最多3位
-numberFormatter.minimumFractionDigits = 2 //设置小数点后最少2位（不足补0）
+numberFormatter.maximumFractionDigits = 2 //设置小数点后最多2位
+numberFormatter.minimumFractionDigits = 0 //设置小数点后最少2位（不足补0）
 
 numberFormatter.positivePrefix = "$" //自定义前缀
 numberFormatter.positiveSuffix = "元" //自定义后缀
 
 //numberFormatter.positiveFormat = "###,###.##" //设置格式
 
+let str = "12323.599"
+
 //格式化
-let format = numberFormatter.string(from: number)!
+let formatNumber = numberFormatter.string(from: NumberFormatter().number(from: str)!)
 
 //打印结果
-print("格式化结果 = \(format)")
+print("格式化结果 = \(formatNumber ?? "")")
